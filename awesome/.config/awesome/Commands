@@ -1,0 +1,73 @@
+ctrl+shift+l = Clear and Reset Termite
+
+#Extraer
+tar -xf file.tar.gz
+unrar x file.rar
+7z x ArchivoIso.iso
+
+#Mostrar info de materia
+upower -i `upower -e | grep 'BAT'`
+
+#Downgradear paquetes -- Debe estar instalado "downgrade" desde AUR
+sudo downgrade <<NombreDelPaquete>>
+
+#Limpiar cache
+sudo paccache -r == Limpiar cache
+sudo pacman -Sc == Limpiar
+yay -Scc
+yay -Yc   <== Eliminar dependencias no deseadas
+pacman -Rns $(pacman -Qtdq)  == Eliminar paquetes huerfanos
+
+#Conectar pantalla
+xrandr --output LVDS --auto --output HDMI-0 --auto --right-of LVDS  
+xrandr --output HDMI --mode 1024x768
+xrandr --output HDMI --mode auto
+
+#Informacion de hardware
+lspci
+lsusb
+
+# Disable screen
+xrandr --output HDMI-0 --off 
+
+# mps-yt
+ da <number's> #Descargar audio
+ dv <number's> #Descargar video
+
+# OpenVPN
+sudo openvpn --config archivodeconfig.ovpn
+
+# Telegram-cli
+ snap run telegram-cli -N -f
+
+# Empaquetar
+makepkg -g >> PKGBUILD && makepkg
+debtap -q paquete.deb
+
+# Virtualbox modprobe
+sudo modprobe vboxdrv
+
+# Iniciar gestor o entorno especifico
+startx /usr/bin/nombre-del-gestor
+startx /usr/bin/i3
+
+# Cerrar entorno o gestor especifico de un tty
+pkill -15 -t tty"$XDG_VTNR" Xorg
+# Lo mismo
+pkill -15 -t tty1
+
+#Hacer s ejecutable
+chmod +x script.sh
+
+# Vim
+Copiar: yy
+Cortar: dd
+Pegar: pp
+
+# Listar paquetes instalados 
+pacman -Qqe > pkglist.txt
+pacman -Qqm > pkglist-aur.txt
+
+# Crear USB booteable
+sudo dd bs=4M if=archivo.iso of=/dev/sdb status=progress && sync 
+
