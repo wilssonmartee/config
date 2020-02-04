@@ -10,7 +10,7 @@ local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
-
+local vicious = require("vicious")
 
 
 
@@ -145,6 +145,10 @@ local clock = awful.widget.watch(
     end
 )
 
+
+--hddtemp
+hddtempwidget = wibox.widget.textbox()
+vicious.register(hddtempwidget, vicious.widgets.hddtemp, "<span font_family='DejaVu Sans' font_desc='9'>/ ${/dev/sda} °C</span>", 19)
 
 
 -- Calendar
