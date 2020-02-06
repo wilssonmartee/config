@@ -496,6 +496,7 @@ s.mytasklist = awful.widget.tasklist {
             arrl_dl,
             tempicon,
             temp.widget,
+	    hddtempwidget,
             -- baticon,
             -- batwidget,
             arrl_dl,
