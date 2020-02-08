@@ -91,7 +91,7 @@ local scrlocker    = "slock"
 
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1  ", "2  ", "3  ", "4  ", "5  ", "6  ", "7  ", "8  ", "9  " }
+awful.util.tagnames = { "1  ", "2  ", "3  ", "4  ", "5  ", "6  ", "7  ", "8  ", "9  " }
 awful.layout.layouts = {
 	awful.layout.suit.tile,
 	awful.layout.suit.tile.left,
@@ -762,7 +762,7 @@ awful.rules.rules = {
 { rule = { class = "Gimp" },
           properties = { screen = 1, tag = awful.util.tagnames[5] } },
 
-{ rule = { class = "mpv"},
+{ rule_any = { class = { "mpv", "Rhythmbox" } },
     properties = { screen = 1, tag = awful.util.tagnames[9] } },
 
 { rule = { class = "feh" },
