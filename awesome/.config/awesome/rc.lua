@@ -82,11 +82,11 @@ local themes = {
 local chosen_theme = themes[2]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "xfce4-terminal"
-local editor       = "subl"
-local gui_editor   = "subl"
-local browser      = "google-chrome-stable"
-local guieditor    = "subl"
+local terminal     = "termite"
+local editor       = "gedit"
+local gui_editor   = "gedit"
+local browser      = "chromium"
+local guieditor    = "gedit"
 local scrlocker    = "slock"
 
 
