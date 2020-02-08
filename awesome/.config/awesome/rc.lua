@@ -9,6 +9,7 @@ local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
 local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
 
 
+
 local gears         = require("gears")
 local awful         = require("awful")
                       require("awful.autofocus")
@@ -16,7 +17,7 @@ local wibox         = require("wibox")
 local beautiful     = require("beautiful")
 local naughty       = require("naughty")
 local lain          = require("lain")
---local menubar       = require("menubar")
+local menubar       = require("menubar")
 local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
                       require("awful.hotkeys_popup.keys")
@@ -74,10 +75,11 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-    "matrix-bak", --1
+    "matrix",    -- 1
+    "matrix-bak", --2
    }
 
-local chosen_theme = themes[1]
+local chosen_theme = themes[2]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "xfce4-terminal"
@@ -238,31 +240,70 @@ root.buttons(my_table.join(
 ))
 -- }}}
 
+
+
+
+-- {{{ Helper function for quitmenu
+myquitmenu = {
+    { " Log out", function() awesome.quit() end},
+    { " Suspend", "systemctl suspend"},
+    { " Reboot", "systemctl reboot"},
+    { " Shutdown", "poweroff"}
+}
+m_theme={
+    border_width=1,
+    border_color="#5beedc",
+    bg_normal="#000000",
+    bg_focus="#383838",
+    fg_normal="#383838",
+    fg_focus="#5beedc",
+    width=230,
+    height=38,
+    font="DejaVu Sans 14"
+}
+quitpopup = awful.menu({items=myquitmenu,theme=m_theme})
+local function quitmenu()
+  s = awful.screen.focused()
+  m_coords = {
+    x = s.geometry.x + s.workarea.width/2-118,
+    y = s.geometry.y + s.workarea.height/2-64
+  }
+  quitpopup:show({coords=m_coords})
+end
+-- }}}
+
+
+
 -- {{{ Key bindings
 globalkeys = my_table.join(
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
    
 
+
+  awful.key({ modkey,    }, "q", quitmenu,
+              {description = "open the quitmenu widget", group = "awesome"}),
+
+
     awful.key({ }, "Print", function()
-os.execute("scrot ~/last.screenshot.png")
+os.execute("scrot ~/Pictures/Screenshots/last.screenshot.png")
 show_screenshot()
-os.execute("mv ~/last.screenshot.png ~/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
+os.execute("mv ~/Pictures/Screenshots/last.screenshot.png ~/Pictures/Screenshots/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
 end,       
               {description = "take a full screenshot", group = "hotkeys"}),
    
 
               awful.key({ modkey,             }, "Print", function()
-os.execute("scrot -u ~/last.screenshot.png")
+os.execute("scrot -u ~/Pictures/Screenshots/last.screenshot.png")
 show_screenshot()
-os.execute("mv ~/last.screenshot.png ~/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
+os.execute("mv ~/Pictures/Screenshots/last.screenshot.png ~/Pictures/Screenshots/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
 end,
 {description = "take a screenshot to focused window", group = "hotkeys"}),
 
                  awful.key({ altkey,             }, "Print", function()
-os.execute("scrot -s ~/last.screenshot.png")
+os.execute("scrot -s ~/Pictures/Screenshots/last.screenshot.png")
 show_screenshot()
-os.execute("mv ~/last.screenshot.png ~/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
+os.execute("mv ~/Pictures/Screenshots/last.screenshot.png ~/Pictures/Screenshots/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
 end,
 {description = "take a screenshot to a selection", group = "hotkeys"}),
 
@@ -385,8 +426,8 @@ awful.key({ "Control" }, "space", function () kbdcfg.switch() end),
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
+    ---awful.key({ modkey, "Control"   }, "q", awesome.quit,
+       ---       {description = "quit awesome", group = "awesome"}),
 
     awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -442,14 +483,14 @@ awful.key({ "Control" }, "space", function () kbdcfg.switch() end),
     awful.key({ }, "XF86AudioRaiseVolume",
         function ()
             os.execute(string.format("amixer -D pulse sset Master 5%%+", beautiful.volume.channel))
-            --show_volumeup()
+           -- show_volumeup()
             beautiful.volume.update()
         end,
         {description = "volume up", group = "hotkeys"}),
     awful.key({ }, "XF86AudioLowerVolume",
         function ()
             os.execute(string.format("amixer -D pulse sset Master 5%%-", beautiful.volume.channel))
-           --show_volumedown()
+          -- show_volumedown()
             beautiful.volume.update()
         end,
         {description = "volume down", group = "hotkeys"}),
@@ -544,6 +585,13 @@ awful.key({ "Control" }, "space", function () kbdcfg.switch() end),
         end,
         {description = "show rofi", group = "launcher"}),
     --
+awful.key({ modkey }, "e", function ()
+            os.execute(string.format("rofi -combi-modi emoji -show combi -modi combi -theme solarized-darker"))
+        end,
+        {description = "show rofi", group = "launcher"}),
+    --
+
+
     -- Prompt
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),

@@ -13,7 +13,6 @@ local wibox = require("wibox")
 local vicious = require("vicious")
 
 
-
 local volumearc_widget = require("../awesome-wm-widgets/volumearc-widget/volumearc")
 local batteryarc_widget = require("../awesome-wm-widgets/batteryarc-widget/batteryarc")
 local cpu_widget = require("../awesome-wm-widgets/cpu-widget/cpu-widget")
@@ -155,18 +154,17 @@ vicious.register(hddtempwidget, vicious.widgets.hddtemp, "<span font_family='Dej
 theme.cal = lain.widget.cal({
     attach_to = { clock },
     notification_preset = {
-        font = theme.font,
+      font = "Monospace 10",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal,
 	border_width = 1,
 	border_color = theme.fg_normal,
-    position = "top_left",
+    position = "top_right",
     }
 })
 
 -- Keyboard map indicator and changer
 --
-
   
 local kbdcfg_icon = wibox.widget {
 	markup = '<span color="#c1c0c0">‌‌</span>',
@@ -477,7 +475,7 @@ s.mytasklist = awful.widget.tasklist {
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             -- batwidget,
-            batteryarc_widget,
+	    batteryarc_widget,
             spr,
             volumearc_widget,
             spr,
@@ -504,11 +502,10 @@ s.mytasklist = awful.widget.tasklist {
             net.widget,
            -- arrl_dl,
            -- clockicon,
-           -- clock,
-	    arrl_dl,
+            arrl_dl,
 	    kbdcfg_icon,
             kbdcfg.widget,
-          
+	         
                 
         },
 
@@ -521,6 +518,7 @@ s.mytasklist = awful.widget.tasklist {
 	    s.mytaglist,
             --spr,
 	    s.mylayoutbox,
+            clock,
         },
       
 
