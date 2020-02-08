@@ -374,7 +374,7 @@ local arrl_ld = separators.arrow_left("alpha", theme.bg_focus)
 
 function theme.at_screen_connect(s)
     -- Quake application
-   s.quake = lain.util.quake({ app = awful.util.terminal, width = 1364 })
+   s.quake = lain.util.quake({ app = awful.util.terminal, width = s.workarea.width - 2 })
 
     -- If wallpaper is a function, call it with the screen
 
