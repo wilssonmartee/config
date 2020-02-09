@@ -4,6 +4,17 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME"/.oh-my-zsh"
 
+# load reflector with pacman
+sudo() {
+    if [[ $@ == "pacman -Syyu" ]]; then
+	command sh ~/.config/reflector/reflector.sh
+	command sudo pacman -Syyu
+    else
+        command sudo $@
+    fi
+}
+
+# fzf
 source /usr/share/fzf/completion.zsh
 
 # Set name of the theme to load --- if set to "random", it will
