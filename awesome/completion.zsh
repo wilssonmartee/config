@@ -231,3 +231,32 @@ _fzf_complete_sudo () {
     eval "zle ${fzf_default_completion:-expand-or-complete}"
   fi
 }
+
+
+_fzf_complete_yay () {
+  local args matches
+  args="$@"
+
+  if [[ $args == "yay -S"* ]]
+  then
+    matches=$(yay -Slq | fzf -m --preview 'yay -Si {}' --reverse --height ${FZF_TMUX_HEIGHT:-50%} $FZF_DEFAULT_OPTS $FZF_COMPLETION_OPTS | tr '\n' ' ')
+
+    if [ -n "$matches" ]
+    then
+      LBUFFER="$LBUFFER$matches"
+    fi
+    zle reset-prompt
+  elif [[ $args == 'yay -R'* ]]
+  then
+    matches=$(yay -Qq | fzf -m --preview 'yay -Qi {}' --reverse --height ${FZF_TMUX_HEIGHT:-50%} $FZF_DEFAULT_OPTS $FZF_COMPLETION_OPTS | tr '\n' ' ')
+  
+    if [ -n "$matches" ]
+    then
+      LBUFFER="$LBUFFER$matches"
+    fi
+    zle reset-prompt
+  else
+    eval "zle ${fzf_default_completion:-expand-or-complete}"
+  fi
+}
+
