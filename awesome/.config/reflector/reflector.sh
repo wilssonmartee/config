@@ -1,6 +1,7 @@
 #!/bin/sh
 # Load reflector daily
 #
+#
 
 date=$(date +%D)
 lastsync="$(cat .config/reflector/.lastsync.txt)"
