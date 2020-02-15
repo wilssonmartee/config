@@ -13,4 +13,4 @@ synclient TapButton1=1 &
 
 sleep 8
 # Network manager applet (tray icon)
-nm-applet --no-agent &
+nm-applet &
