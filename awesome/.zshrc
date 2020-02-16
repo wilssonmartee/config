@@ -9,7 +9,7 @@ export ZSH=$HOME"/.oh-my-zsh"
 # load reflector with pacman
 sudo() {
     if [[ $@ == "pacman -Syyu" ]]; then
-	command sudo sh .config/reflector/reflector.sh
+	command sh ~/.config/reflector/reflector.sh
 	command sudo pacman -Syyu
     else
         command sudo $@
