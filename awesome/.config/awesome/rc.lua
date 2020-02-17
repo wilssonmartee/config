@@ -585,11 +585,6 @@ awful.key({ "Control" }, "space", function () kbdcfg.switch() end),
         end,
         {description = "show rofi", group = "launcher"}),
     --
-awful.key({ modkey }, "e", function ()
-            os.execute(string.format("rofi -combi-modi emoji -show combi -modi combi -theme solarized-darker"))
-        end,
-        {description = "show rofi", group = "launcher"}),
-    --
 
 
     -- Prompt
