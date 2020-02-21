@@ -1,3 +1,8 @@
+[options]
+
+font = Monospace 10
+icon_name = terminal
+
 [colors]
 
 # special
@@ -37,4 +42,3 @@ color14 = #64cabc
 # white
 color7  = #c5c8c6
 color15 = #ffffff
-
