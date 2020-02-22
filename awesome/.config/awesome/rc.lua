@@ -286,24 +286,24 @@ globalkeys = my_table.join(
 
 
     awful.key({ }, "Print", function()
-os.execute("scrot ~/Pictures/Screenshots/last.screenshot.png")
+os.execute("scrot ~/last.screenshot.png")
 show_screenshot()
-os.execute("mv ~/Pictures/Screenshots/last.screenshot.png ~/Pictures/Screenshots/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
+os.execute("mv ~/last.screenshot.png ~/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
 end,       
               {description = "take a full screenshot", group = "hotkeys"}),
    
 
               awful.key({ modkey,             }, "Print", function()
-os.execute("scrot -u ~/Pictures/Screenshots/last.screenshot.png")
+os.execute("scrot -u ~/last.screenshot.png")
 show_screenshot()
-os.execute("mv ~/Pictures/Screenshots/last.screenshot.png ~/Pictures/Screenshots/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
+os.execute("mv ~/last.screenshot.png ~/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
 end,
 {description = "take a screenshot to focused window", group = "hotkeys"}),
 
                  awful.key({ altkey,             }, "Print", function()
-os.execute("scrot -s ~/Pictures/Screenshots/last.screenshot.png")
+os.execute("scrot -s ~/last.screenshot.png")
 show_screenshot()
-os.execute("mv ~/Pictures/Screenshots/last.screenshot.png ~/Pictures/Screenshots/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
+os.execute("mv ~/last.screenshot.png ~/$(date +%Y.%m.%d-%H.%M.%S).screenshot.png")
 end,
 {description = "take a screenshot to a selection", group = "hotkeys"}),
 
