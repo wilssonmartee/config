@@ -476,8 +476,8 @@ awful.key({ "Control" }, "space", function () kbdcfg.switch() end),
               {description = "brightness down", group = "hotkeys"}),
 
 	-- Startup apps
- awful.key({ modkey }, "a", function () os.execute("sh ~/.config/awesome/load.sh") end,
-              {description = "Start complements", group = "awesome"}),
+ -- awful.key({ modkey }, "a", function () os.execute("sh ~/.config/awesome/load.sh") end,
+    --          {description = "Start complements", group = "awesome"}),
 
     -- ALSA volume control
     awful.key({ }, "XF86AudioRaiseVolume",
