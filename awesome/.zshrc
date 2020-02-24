@@ -9,11 +9,11 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 sudo() {
-    if [[ $@ == "pacman -Syyu" ]]; then
-	command sh ~/.config/reflector/reflector.sh
-	command sudo pacman -Syyu
-    else
-        command sudo $@
+    if [[ $@ == "pacman -S"* ]]; then
+  command sh ~/.config/reflector/reflector.sh
+  command sudo $@        
+  else
+command sudo $@
     fi
 }
 
@@ -21,7 +21,6 @@ source /usr/share/fzf/completion.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 
 case $TERM in
   xterm*)
